@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB2431141938BE09009C8CE0 /* SWCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */; };
+		BB2431171938C12E009C8CE0 /* SWCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431161938C12E009C8CE0 /* SWCalendarView.m */; };
+		BB24311A1938CBAE009C8CE0 /* SWCalendarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */; };
 		BB2A4F4A1935A913004399DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F491935A913004399DD /* Foundation.framework */; };
 		BB2A4F4C1935A913004399DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4B1935A913004399DD /* CoreGraphics.framework */; };
 		BB2A4F4E1935A913004399DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4D1935A913004399DD /* UIKit.framework */; };
@@ -21,7 +24,8 @@
 		BB2A4F6A1935A913004399DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4D1935A913004399DD /* UIKit.framework */; };
 		BB2A4F6B1935A913004399DD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4F1935A913004399DD /* CoreData.framework */; };
 		BB2A4F731935A913004399DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB2A4F711935A913004399DD /* InfoPlist.strings */; };
-		BB2A4F751935A913004399DD /* SWCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F741935A913004399DD /* SWCalendarTests.m */; };
+		BB2A4F811935C170004399DD /* NSDate+SWAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F801935C170004399DD /* NSDate+SWAddtions.m */; };
+		BB36527A193782D6005AA525 /* SWDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB365279193782D6005AA525 /* SWDateTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB2431121938BE09009C8CE0 /* SWCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarViewController.h; sourceTree = "<group>"; };
+		BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarViewController.m; sourceTree = "<group>"; };
+		BB2431151938C12E009C8CE0 /* SWCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarView.h; sourceTree = "<group>"; };
+		BB2431161938C12E009C8CE0 /* SWCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarView.m; sourceTree = "<group>"; };
+		BB2431181938CBAE009C8CE0 /* SWCalendarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarHelper.h; sourceTree = "<group>"; };
+		BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarHelper.m; sourceTree = "<group>"; };
+		BB24311B1938CC32009C8CE0 /* SWCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarConstants.h; sourceTree = "<group>"; };
 		BB2A4F461935A913004399DD /* SWCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2A4F491935A913004399DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB2A4F4B1935A913004399DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,7 +63,9 @@
 		BB2A4F671935A913004399DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BB2A4F701935A913004399DD /* SWCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SWCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		BB2A4F721935A913004399DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BB2A4F741935A913004399DD /* SWCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWCalendarTests.m; sourceTree = "<group>"; };
+		BB2A4F7F1935C170004399DD /* NSDate+SWAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SWAddtions.h"; sourceTree = "<group>"; };
+		BB2A4F801935C170004399DD /* NSDate+SWAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SWAddtions.m"; sourceTree = "<group>"; };
+		BB365279193782D6005AA525 /* SWDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWDateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +128,7 @@
 		BB2A4F511935A913004399DD /* SWCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				BB2A4F7E1935C083004399DD /* SWCalendar */,
 				BB2A4F5A1935A913004399DD /* SWAppDelegate.h */,
 				BB2A4F5B1935A913004399DD /* SWAppDelegate.m */,
 				BB2A4F601935A913004399DD /* Images.xcassets */,
@@ -138,7 +152,7 @@
 		BB2A4F6E1935A913004399DD /* SWCalendarTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB2A4F741935A913004399DD /* SWCalendarTests.m */,
+				BB365279193782D6005AA525 /* SWDateTests.m */,
 				BB2A4F6F1935A913004399DD /* Supporting Files */,
 			);
 			path = SWCalendarTests;
@@ -151,6 +165,22 @@
 				BB2A4F711935A913004399DD /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB2A4F7E1935C083004399DD /* SWCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				BB24311B1938CC32009C8CE0 /* SWCalendarConstants.h */,
+				BB2A4F7F1935C170004399DD /* NSDate+SWAddtions.h */,
+				BB2A4F801935C170004399DD /* NSDate+SWAddtions.m */,
+				BB2431121938BE09009C8CE0 /* SWCalendarViewController.h */,
+				BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */,
+				BB2431151938C12E009C8CE0 /* SWCalendarView.h */,
+				BB2431161938C12E009C8CE0 /* SWCalendarView.m */,
+				BB2431181938CBAE009C8CE0 /* SWCalendarHelper.h */,
+				BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */,
+			);
+			path = SWCalendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,9 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2431171938C12E009C8CE0 /* SWCalendarView.m in Sources */,
+				BB2A4F811935C170004399DD /* NSDate+SWAddtions.m in Sources */,
 				BB2A4F5C1935A913004399DD /* SWAppDelegate.m in Sources */,
 				BB2A4F581935A913004399DD /* main.m in Sources */,
+				BB24311A1938CBAE009C8CE0 /* SWCalendarHelper.m in Sources */,
 				BB2A4F5F1935A913004399DD /* SWCalendar.xcdatamodeld in Sources */,
+				BB2431141938BE09009C8CE0 /* SWCalendarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB2A4F751935A913004399DD /* SWCalendarTests.m in Sources */,
+				BB36527A193782D6005AA525 /* SWDateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +482,7 @@
 				BB2A4F7A1935A913004399DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB2A4F7B1935A913004399DD /* Build configuration list for PBXNativeTarget "SWCalendarTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +491,7 @@
 				BB2A4F7D1935A913004399DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

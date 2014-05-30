@@ -7,6 +7,7 @@
 //
 
 #import "SWAppDelegate.h"
+#import "SWCalendarViewController.h"
 
 @implementation SWAppDelegate
 
@@ -19,6 +20,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    SWCalendarViewController *calendarViewController = [[SWCalendarViewController alloc] init];
+    
+    UINavigationController *naviViewController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
+    
+    self.window.rootViewController = naviViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
