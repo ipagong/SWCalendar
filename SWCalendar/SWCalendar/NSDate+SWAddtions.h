@@ -10,6 +10,10 @@
 
 @interface NSDate (SWAddtions)
 
+- (NSDate *)sw_setDateWithYear:(NSInteger)year
+                         month:(NSInteger)month
+                           day:(NSInteger)day;
+
 - (NSInteger)sw_day;
 - (NSInteger)sw_month;
 - (NSInteger)sw_year;
@@ -18,5 +22,11 @@
 - (NSInteger)sw_weakday;
 
 - (NSInteger)sw_dateCount;
+- (NSInteger)sw_countWeekOfMonth;
 
+- (NSDate *)sw_lastDateOfCurrentMonth;
+- (NSDate *)sw_firstDateOfCurrentMonth;
+- (NSDate *)sw_modifiedDateWithYear:(NSInteger)addYear
+                              month:(NSInteger)addMonth
+                                day:(NSInteger)addDay;
 @end

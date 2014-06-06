@@ -50,11 +50,31 @@
     UICollectionViewLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.alwaysBounceVertical = YES;
+    
+    switch (self.direction) {
+            
+        case SWCalendarViewScrollDirectionHorizontal:
+            
+            self.collectionView.alwaysBounceVertical    = NO;
+            self.collectionView.alwaysBounceHorizontal  = YES;
+            
+            break;
+            
+        case SWCalendarViewScrollDirectionVertical:
+            
+            self.collectionView.alwaysBounceVertical    = YES;
+            self.collectionView.alwaysBounceHorizontal  = NO;
+            
+            break;
+            
+        default:
+            break;
+    }
+    
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"testCell"];
     
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     [self addSubview:self.collectionView];
@@ -128,32 +148,50 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+    if (change == nil || change.count == 0) {
+        return;
+    }
+    
+    NSInteger newValue = -1;
+    NSInteger oldValue = -1;
+    
+    @try {
+        newValue = [[change valueForKey:NSKeyValueChangeNewKey] integerValue];
+        oldValue = [[change valueForKey:NSKeyValueChangeOldKey] integerValue];
+    }
+    @catch (NSException *exception) {
+#ifdef DEBUG
+        NSLog(@"[%s] %@", __PRETTY_FUNCTION__, exception);
+#endif
+    }
     
     if ([keyPath isEqualToString:kSWCalendarObserverKeyCurrentMonth] == YES) {
-        [self obsesrverMonthWithNew:0 old:0];
+        [self obsesrverMonthWithNew:newValue old:oldValue];
     }
     
     if ([keyPath isEqualToString:kSWCalendarObserverKeyCurrentYear] == YES) {
-        [self obsesrverYearWithNew:0 old:0];
+        [self obsesrverYearWithNew:newValue old:oldValue];
     }
     
     if ([keyPath isEqualToString:kSWCalendarObserverKeyDirection] == YES) {
-        [self obsesrverDirectionWithNew:0 old:0];
+        [self obsesrverDirectionWithNew:newValue old:oldValue];
     }
-    
 }
 
-- (void)obsesrverMonthWithNew:(NSInteger)new old:(NSInteger)old
+- (void)obsesrverMonthWithNew:(NSInteger)new
+                          old:(NSInteger)old
 {
-    
+    [self reloadCalendar];
 }
 
-- (void)obsesrverYearWithNew:(NSInteger)new old:(NSInteger)old
+- (void)obsesrverYearWithNew:(NSInteger)new
+                         old:(NSInteger)old
 {
-    
+    [self reloadCalendar];
 }
 
-- (void)obsesrverDirectionWithNew:(NSInteger)new old:(NSInteger)old
+- (void)obsesrverDirectionWithNew:(SWCalendarViewScrollDirection)new
+                              old:(SWCalendarViewScrollDirection)old
 {
     
 }
@@ -170,5 +208,18 @@
     return nil;
 }
 
+#pragma mark - calendar methods
+
+- (void)reloadCalendar
+{
+    
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    
+}
 
 @end

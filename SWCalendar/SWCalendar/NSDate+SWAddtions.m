@@ -14,8 +14,22 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    return [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitWeekOfMonth|NSCalendarUnitWeekday
+    NSCalendarUnit calendarUnit =
+    NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitWeekOfMonth|NSCalendarUnitWeekday;
+    
+    return [calendar components:calendarUnit
                        fromDate:self];
+}
+
+- (NSDate *)sw_setDateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+{
+    NSDateComponents *components = [self sw_defaultComponents];
+    
+    [components setYear:year];
+    [components setMonth:month];
+    [components setDay:day];
+    
+    return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 
 - (NSInteger)sw_day
@@ -45,13 +59,44 @@
 
 - (NSInteger)sw_dateCount
 {
-    NSDateComponents *components = [[NSDateComponents alloc] init];
+    return [[self sw_setDateWithYear:[self sw_year] month:[self sw_month] + 1 day:0] sw_day];
+}
+
+- (NSInteger)sw_countWeekOfMonth
+{
+    NSInteger year  = [self sw_year];
+    NSInteger month = [self sw_month];
     
-    [components setYear:[self sw_year]];
-    [components setMonth:[self sw_month] + 1];
-    [components setDay:0];
+    return [[self sw_setDateWithYear:year month:month day:0] sw_weakOfMonth];
+}
+
+- (NSDate *)sw_lastDateOfCurrentMonth
+{
+    NSInteger year  = [self sw_year];
+    NSInteger month = [self sw_month];
+    NSInteger day   = [self sw_dateCount];
     
-    return [[[NSCalendar currentCalendar] dateFromComponents:components] sw_day];
+    return [self sw_setDateWithYear:year month:month day:day];
+}
+
+- (NSDate *)sw_firstDateOfCurrentMonth
+{
+    NSInteger year  = [self sw_year];
+    NSInteger month = [self sw_month];
+    NSInteger day   = 1;
+    
+    return [self sw_setDateWithYear:year month:month day:day];
+}
+
+- (NSDate *)sw_modifiedDateWithYear:(NSInteger)addYear
+                              month:(NSInteger)addMonth
+                                day:(NSInteger)addDay
+{
+    NSInteger year  = [self sw_year]  + addYear;
+    NSInteger month = [self sw_month] + addMonth;
+    NSInteger day   = [self sw_day]   + addDay;
+    
+    return [self sw_setDateWithYear:year month:month day:day];
 }
 
 @end

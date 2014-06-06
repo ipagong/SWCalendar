@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB2431141938BE09009C8CE0 /* SWCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */; };
 		BB2431171938C12E009C8CE0 /* SWCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431161938C12E009C8CE0 /* SWCalendarView.m */; };
-		BB24311A1938CBAE009C8CE0 /* SWCalendarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */; };
+		BB2905641940590E00E3D44F /* SWCalendarDefaultEmptyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2905631940590E00E3D44F /* SWCalendarDefaultEmptyModel.m */; };
 		BB2A4F4A1935A913004399DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F491935A913004399DD /* Foundation.framework */; };
 		BB2A4F4C1935A913004399DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4B1935A913004399DD /* CoreGraphics.framework */; };
 		BB2A4F4E1935A913004399DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2A4F4D1935A913004399DD /* UIKit.framework */; };
@@ -26,6 +26,12 @@
 		BB2A4F731935A913004399DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB2A4F711935A913004399DD /* InfoPlist.strings */; };
 		BB2A4F811935C170004399DD /* NSDate+SWAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F801935C170004399DD /* NSDate+SWAddtions.m */; };
 		BB36527A193782D6005AA525 /* SWDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB365279193782D6005AA525 /* SWDateTests.m */; };
+		BB43D4CA1941CB8200F388E0 /* SWCalendarBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB43D4C91941CB8200F388E0 /* SWCalendarBuilderTests.m */; };
+		BBB91F36193ED92900688FAB /* SWCalendarDefaultDecoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB91F35193ED92900688FAB /* SWCalendarDefaultDecoModel.m */; };
+		BBB91F39193ED93B00688FAB /* SWCalendarDefaultDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB91F38193ED93B00688FAB /* SWCalendarDefaultDayModel.m */; };
+		BBB91F3C193ED97B00688FAB /* SWCalendarSimpleDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB91F3B193ED97B00688FAB /* SWCalendarSimpleDayModel.m */; };
+		BBDB87C9193C75DA0074C9D1 /* SWCalendarBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDB87C8193C75DA0074C9D1 /* SWCalendarBuilder.m */; };
+		BBDB87CD193CD4560074C9D1 /* SWCalendarSimpleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDB87CC193CD4560074C9D1 /* SWCalendarSimpleFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,9 +49,9 @@
 		BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarViewController.m; sourceTree = "<group>"; };
 		BB2431151938C12E009C8CE0 /* SWCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarView.h; sourceTree = "<group>"; };
 		BB2431161938C12E009C8CE0 /* SWCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarView.m; sourceTree = "<group>"; };
-		BB2431181938CBAE009C8CE0 /* SWCalendarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarHelper.h; sourceTree = "<group>"; };
-		BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarHelper.m; sourceTree = "<group>"; };
 		BB24311B1938CC32009C8CE0 /* SWCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarConstants.h; sourceTree = "<group>"; };
+		BB2905621940590E00E3D44F /* SWCalendarDefaultEmptyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarDefaultEmptyModel.h; sourceTree = "<group>"; };
+		BB2905631940590E00E3D44F /* SWCalendarDefaultEmptyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarDefaultEmptyModel.m; sourceTree = "<group>"; };
 		BB2A4F461935A913004399DD /* SWCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2A4F491935A913004399DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB2A4F4B1935A913004399DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,6 +72,19 @@
 		BB2A4F7F1935C170004399DD /* NSDate+SWAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SWAddtions.h"; sourceTree = "<group>"; };
 		BB2A4F801935C170004399DD /* NSDate+SWAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SWAddtions.m"; sourceTree = "<group>"; };
 		BB365279193782D6005AA525 /* SWDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWDateTests.m; sourceTree = "<group>"; };
+		BB43D4C91941CB8200F388E0 /* SWCalendarBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarBuilderTests.m; sourceTree = "<group>"; };
+		BBB91F34193ED92900688FAB /* SWCalendarDefaultDecoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarDefaultDecoModel.h; sourceTree = "<group>"; };
+		BBB91F35193ED92900688FAB /* SWCalendarDefaultDecoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarDefaultDecoModel.m; sourceTree = "<group>"; };
+		BBB91F37193ED93B00688FAB /* SWCalendarDefaultDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarDefaultDayModel.h; sourceTree = "<group>"; };
+		BBB91F38193ED93B00688FAB /* SWCalendarDefaultDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarDefaultDayModel.m; sourceTree = "<group>"; };
+		BBB91F3A193ED97B00688FAB /* SWCalendarSimpleDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarSimpleDayModel.h; sourceTree = "<group>"; };
+		BBB91F3B193ED97B00688FAB /* SWCalendarSimpleDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarSimpleDayModel.m; sourceTree = "<group>"; };
+		BBDB87C7193C75DA0074C9D1 /* SWCalendarBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarBuilder.h; sourceTree = "<group>"; };
+		BBDB87C8193C75DA0074C9D1 /* SWCalendarBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarBuilder.m; sourceTree = "<group>"; };
+		BBDB87CA193C819B0074C9D1 /* SWCalendarModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWCalendarModelProtocol.h; sourceTree = "<group>"; };
+		BBDB87CB193CD4560074C9D1 /* SWCalendarSimpleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarSimpleFactory.h; sourceTree = "<group>"; };
+		BBDB87CC193CD4560074C9D1 /* SWCalendarSimpleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarSimpleFactory.m; sourceTree = "<group>"; };
+		BBDB87CE193CD4700074C9D1 /* SWCalendarFactoryProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWCalendarFactoryProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BB365279193782D6005AA525 /* SWDateTests.m */,
+				BB43D4C91941CB8200F388E0 /* SWCalendarBuilderTests.m */,
 				BB2A4F6F1935A913004399DD /* Supporting Files */,
 			);
 			path = SWCalendarTests;
@@ -177,8 +197,20 @@
 				BB2431131938BE09009C8CE0 /* SWCalendarViewController.m */,
 				BB2431151938C12E009C8CE0 /* SWCalendarView.h */,
 				BB2431161938C12E009C8CE0 /* SWCalendarView.m */,
-				BB2431181938CBAE009C8CE0 /* SWCalendarHelper.h */,
-				BB2431191938CBAE009C8CE0 /* SWCalendarHelper.m */,
+				BBDB87C7193C75DA0074C9D1 /* SWCalendarBuilder.h */,
+				BBDB87C8193C75DA0074C9D1 /* SWCalendarBuilder.m */,
+				BBDB87CE193CD4700074C9D1 /* SWCalendarFactoryProtocol.h */,
+				BBDB87CB193CD4560074C9D1 /* SWCalendarSimpleFactory.h */,
+				BBDB87CC193CD4560074C9D1 /* SWCalendarSimpleFactory.m */,
+				BBDB87CA193C819B0074C9D1 /* SWCalendarModelProtocol.h */,
+				BBB91F3A193ED97B00688FAB /* SWCalendarSimpleDayModel.h */,
+				BBB91F3B193ED97B00688FAB /* SWCalendarSimpleDayModel.m */,
+				BBB91F37193ED93B00688FAB /* SWCalendarDefaultDayModel.h */,
+				BBB91F38193ED93B00688FAB /* SWCalendarDefaultDayModel.m */,
+				BB2905621940590E00E3D44F /* SWCalendarDefaultEmptyModel.h */,
+				BB2905631940590E00E3D44F /* SWCalendarDefaultEmptyModel.m */,
+				BBB91F34193ED92900688FAB /* SWCalendarDefaultDecoModel.h */,
+				BBB91F35193ED92900688FAB /* SWCalendarDefaultDecoModel.m */,
 			);
 			path = SWCalendar;
 			sourceTree = "<group>";
@@ -280,11 +312,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2431171938C12E009C8CE0 /* SWCalendarView.m in Sources */,
+				BBDB87C9193C75DA0074C9D1 /* SWCalendarBuilder.m in Sources */,
 				BB2A4F811935C170004399DD /* NSDate+SWAddtions.m in Sources */,
 				BB2A4F5C1935A913004399DD /* SWAppDelegate.m in Sources */,
 				BB2A4F581935A913004399DD /* main.m in Sources */,
-				BB24311A1938CBAE009C8CE0 /* SWCalendarHelper.m in Sources */,
+				BBDB87CD193CD4560074C9D1 /* SWCalendarSimpleFactory.m in Sources */,
+				BBB91F39193ED93B00688FAB /* SWCalendarDefaultDayModel.m in Sources */,
 				BB2A4F5F1935A913004399DD /* SWCalendar.xcdatamodeld in Sources */,
+				BBB91F36193ED92900688FAB /* SWCalendarDefaultDecoModel.m in Sources */,
+				BB2905641940590E00E3D44F /* SWCalendarDefaultEmptyModel.m in Sources */,
+				BBB91F3C193ED97B00688FAB /* SWCalendarSimpleDayModel.m in Sources */,
 				BB2431141938BE09009C8CE0 /* SWCalendarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB36527A193782D6005AA525 /* SWDateTests.m in Sources */,
+				BB43D4CA1941CB8200F388E0 /* SWCalendarBuilderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

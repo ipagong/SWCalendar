@@ -10,8 +10,18 @@
 #define SWCalendar_SWCalendarConstants_h
 
 typedef enum {
+    
     SWCalendarViewScrollDirectionHorizontal = 0,
     SWCalendarViewScrollDirectionVertical
+    
 } SWCalendarViewScrollDirection;
+
+#define kSWCalendarDefaultDecoCellKey        @"DefaultDecoCellKey"
+
+#define kSWCalendarDefaultDayCellKey         @"DefaultDayCellKey"
+#define kSWCalendarDefaultEmptyDayCellKey    @"DefaultEmptyDayCellKey"
+
+#define kSWCalendarEmptyString          @""
+#define kSWCalendarNotChangedValue      -1
 
 #endif
