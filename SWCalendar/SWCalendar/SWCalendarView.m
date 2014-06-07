@@ -64,11 +64,11 @@
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    [self.collectionView setBackgroundColor:[UIColor clearColor]];
-    
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     [self addSubview:self.collectionView];
     
@@ -113,6 +113,7 @@
     }
     
     [self.collectionView setFrame:collectionViewFrame];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - observing methods
@@ -213,9 +214,9 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellSize = (CGRectGetWidth(self.collectionView.frame)/[self.builder numberOfCalendarHorizontal]);
+    CGFloat cellSize = (CGRectGetWidth(self.collectionView.frame)/[self.builder numberOfCalendarHorizontal]) - 1;
     
-    return CGSizeMake(cellSize - 1, cellSize - 1);
+    return CGSizeMake(cellSize, cellSize);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

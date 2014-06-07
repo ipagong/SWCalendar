@@ -24,8 +24,14 @@
         self.view = [self createBaseView];
         
         self.calendarView = [[SWCalendarView alloc] initWithFrame:self.view.frame];
+        self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        self.calendarView.autoresizesSubviews = YES;
+        
         [self.calendarView setDirection:SWCalendarViewScrollDirectionVertical];
+        
         [self.view addSubview:self.calendarView];
+        
+        self.title = [NSString stringWithFormat:@"%@", [NSDate date]];
     }
     return self;
 }
@@ -38,6 +44,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    NSLog(@"1");
 }
 
 - (UIView *)createBaseView
