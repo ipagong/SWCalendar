@@ -16,6 +16,11 @@
     return kSWCalendarDefaultDecoCellKey;
 }
 
+- (Class)cellClazz
+{
+    return NSClassFromString(@"SWCalendarSimpleDecoCell");
+}
+
 - (NSString *)title
 {
     switch (self.dayType) {

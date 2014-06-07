@@ -7,6 +7,11 @@
 //
 
 #import "SWCalendarView.h"
+#import "SWCalendarBuilder.h"
+#import "SWCalendarSimpleFactory.h"
+
+#import "SWCalendarModelProtocol.h"
+#import "SWCalendarViewCellProtocol.h"
 
 #define kSWCalendarObserverKeyCurrentYear       @"currentYear"
 #define kSWCalendarObserverKeyCurrentMonth      @"currentMonth"
@@ -20,6 +25,9 @@
 
 @property (nonatomic, assign) BOOL isObserving;
 
+@property (nonatomic, strong) SWCalendarBuilder *builder;
+@property (nonatomic, strong) id <SWCalendarFactoryProtocol> factory;
+
 @end
 
 @implementation SWCalendarView
@@ -30,7 +38,9 @@
     if (self) {
         
         [self makeDefaultView];
-
+        
+        [self makeCalendar];
+        
         [self registCalendarViewObserving];
     }
     return self;
@@ -42,6 +52,9 @@
     
     self.collectionView = nil;
     self.defaultDate    = nil;
+    
+    self.builder = nil;
+    self.factory = nil;
 }
 
 - (void)makeDefaultView
@@ -53,26 +66,6 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
-    switch (self.direction) {
-            
-        case SWCalendarViewScrollDirectionHorizontal:
-            
-            self.collectionView.alwaysBounceVertical    = NO;
-            self.collectionView.alwaysBounceHorizontal  = YES;
-            
-            break;
-            
-        case SWCalendarViewScrollDirectionVertical:
-            
-            self.collectionView.alwaysBounceVertical    = YES;
-            self.collectionView.alwaysBounceHorizontal  = NO;
-            
-            break;
-            
-        default:
-            break;
-    }
     
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
@@ -97,6 +90,26 @@
         
         collectionViewFrame = self.collectionFrame;
         
+    }
+    
+    switch (self.direction) {
+            
+        case SWCalendarViewScrollDirectionHorizontal:
+            
+            self.collectionView.alwaysBounceVertical    = NO;
+            self.collectionView.alwaysBounceHorizontal  = YES;
+            
+            break;
+            
+        case SWCalendarViewScrollDirectionVertical:
+            
+            self.collectionView.alwaysBounceVertical    = YES;
+            self.collectionView.alwaysBounceHorizontal  = NO;
+            
+            break;
+            
+        default:
+            break;
     }
     
     [self.collectionView setFrame:collectionViewFrame];
@@ -196,23 +209,65 @@
     
 }
 
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat cellSize = (CGRectGetWidth(self.collectionView.frame)/[self.builder numberOfCalendarHorizontal]);
+    
+    return CGSizeMake(cellSize - 1, cellSize - 1);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2;
+}
+
 #pragma mark - collectionViewDataSource methods
+
+- (void)makeCalendar
+{
+    self.factory = [[SWCalendarSimpleFactory alloc] init];
+    
+    self.builder = [[SWCalendarBuilder alloc] initWithModelFactory:self.factory];
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 0;
+    return [self.builder totalModelCount];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    id <SWCalendarModelProtocol> model = [self.builder modelOfIndex:indexPath.row];
+    
+    [self.collectionView registerClass:[model cellClazz]
+            forCellWithReuseIdentifier:[model cellKey]];
+    
+    UICollectionViewCell <SWCalendarViewCellProtocol> *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:[model cellKey]
+                                                                                                             forIndexPath:indexPath];
+    
+    [cell refreshCellWithModel:model];
+    
+    return cell;
 }
 
 #pragma mark - calendar methods
 
 - (void)reloadCalendar
 {
-    
+    [self.builder reloadModels];
+    [self.collectionView reloadData];
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView

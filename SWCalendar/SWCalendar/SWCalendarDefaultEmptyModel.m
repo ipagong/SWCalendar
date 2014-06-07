@@ -16,4 +16,9 @@
     return kSWCalendarDefaultEmptyDayCellKey;
 }
 
+- (Class)cellClazz
+{
+    return NSClassFromString(@"SWCalendarSimpleEmptyCell");
+}
+
 @end

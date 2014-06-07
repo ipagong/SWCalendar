@@ -168,7 +168,7 @@
         
         if (model) {
             
-            [self.frontModels addObject:model];
+            [self.frontModels insertObject:model atIndex:0];
             
         }
         
@@ -228,7 +228,7 @@
 
 - (id<SWCalendarModelProtocol>)modelOfIndex:(NSInteger)index
 {
-    if (self.totalModels && self.totalModels.count < index) {
+    if (self.totalModels && index < self.totalModels.count) {
         return [self.totalModels objectAtIndex:index];
     }
     return nil;
@@ -236,7 +236,7 @@
 
 - (NSInteger)totalModelCount
 {
-    return self.frontModels.count + self.mainModels.count + self.rearModels.count;
+    return self.decoModels.count + self.frontModels.count + self.mainModels.count + self.rearModels.count;
 }
 
 - (NSInteger)numberOfCalendarVertical

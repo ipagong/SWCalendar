@@ -27,6 +27,11 @@
     return kSWCalendarDefaultDayCellKey;
 }
 
+- (Class)cellClazz
+{
+    return NSClassFromString(@"SWCalendarSimpleDayCell");
+}
+
 - (NSString *)title
 {
     return kSWCalendarEmptyString;

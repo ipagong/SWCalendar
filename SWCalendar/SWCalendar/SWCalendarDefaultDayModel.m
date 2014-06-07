@@ -15,6 +15,12 @@
 {
     return kSWCalendarDefaultDayCellKey;
 }
+
+- (Class)cellClazz
+{
+    return NSClassFromString(@"SWCalendarSimpleDayCell");
+}
+
 - (NSString *)title
 {
     if (self.day == kSWCalendarNotChangedValue) {

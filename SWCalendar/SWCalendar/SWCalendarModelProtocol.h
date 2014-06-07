@@ -7,22 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum {
-    
-    SWCalendarDayTypeSunday = 1,
-    SWCalendarDayTypeMonday,
-    SWCalendarDayTypeTuseday,
-    SWCalendarDayTypeWednesday,
-    SWCalendarDayTypeThursday,
-    SWCalendarDayTypeFriday,
-    SWCalendarDayTypeSaturday,
-    
-} SWCalendarDayType;
+#import "SWCalendarConstants.h"
 
 @protocol SWCalendarModelProtocol <NSObject>
 
 - (NSString *)cellKey;
+- (Class)cellClazz;
 
 - (NSString *)title;
 - (NSString *)subTitle;

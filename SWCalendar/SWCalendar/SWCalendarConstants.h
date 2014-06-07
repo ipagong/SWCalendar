@@ -16,6 +16,18 @@ typedef enum {
     
 } SWCalendarViewScrollDirection;
 
+typedef enum {
+    
+    SWCalendarDayTypeSunday = 1,
+    SWCalendarDayTypeMonday,
+    SWCalendarDayTypeTuseday,
+    SWCalendarDayTypeWednesday,
+    SWCalendarDayTypeThursday,
+    SWCalendarDayTypeFriday,
+    SWCalendarDayTypeSaturday,
+    
+} SWCalendarDayType;
+
 #define kSWCalendarDefaultDecoCellKey        @"DefaultDecoCellKey"
 
 #define kSWCalendarDefaultDayCellKey         @"DefaultDayCellKey"
