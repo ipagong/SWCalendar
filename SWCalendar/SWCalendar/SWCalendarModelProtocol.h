@@ -17,6 +17,8 @@
 - (NSString *)title;
 - (NSString *)subTitle;
 
+- (BOOL)enable;
+
 @property (nonatomic, assign) SWCalendarDayType dayType;
 
 @property (nonatomic, assign) NSInteger year;
@@ -24,5 +26,6 @@
 @property (nonatomic, assign) NSInteger day;
 
 @property (nonatomic, assign) BOOL isOtherMonth;
+
 
 @end

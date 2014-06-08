@@ -28,12 +28,16 @@ typedef enum {
     
 } SWCalendarDayType;
 
-#define kSWCalendarDefaultDecoCellKey        @"DefaultDecoCellKey"
+#define kSWCalendarDefaultDecoCellKey           @"DefaultDecoCellKey"
 
-#define kSWCalendarDefaultDayCellKey         @"DefaultDayCellKey"
-#define kSWCalendarDefaultEmptyDayCellKey    @"DefaultEmptyDayCellKey"
+#define kSWCalendarDefaultDayCellKey            @"DefaultDayCellKey"
+#define kSWCalendarDefaultEmptyDayCellKey       @"DefaultEmptyDayCellKey"
 
-#define kSWCalendarEmptyString          @""
-#define kSWCalendarNotChangedValue      -1
+#define kSWCalendarEmptyString                  @""
+#define kSWCalendarNotChangedValue              -1
+
+#define kSWCalendarBuilderDefaultKey            @"NonManageCalendar"
+
+#define kSWCalendarBuilderDefaultCacheCount     5
 
 #endif

@@ -92,4 +92,9 @@
     return kSWCalendarEmptyString;
 }
 
+- (BOOL)enable
+{
+    return NO;
+}
+
 @end

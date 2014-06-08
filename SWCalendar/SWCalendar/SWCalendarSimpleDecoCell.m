@@ -45,7 +45,7 @@
     [self.contentView addSubview:self.subTitle];
     
     self.backgroundView = [[UIView alloc] initWithFrame:self.frame];
-    [self.backgroundView setBackgroundColor:[UIColor blackColor]];
+    [self.backgroundView setBackgroundColor:[UIColor purpleColor]];
 }
 
 -(void)layoutSubviews

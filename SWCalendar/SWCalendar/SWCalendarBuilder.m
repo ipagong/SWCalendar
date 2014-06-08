@@ -9,8 +9,9 @@
 #import "SWCalendarBuilder.h"
 #import "NSDate+SWAddtions.h"
 #import "SWCalendarModelProtocol.h"
+#import "SWCalendarConstants.h"
 
-#define kSWCalendarDecorationCapacity      7
+#define kSWCalendarDecorationCapacity 7
 
 @interface SWCalendarBuilder ()
 
@@ -226,6 +227,16 @@
     }
 }
 
+#pragma mark - public methods
+
+- (NSString *)calendarKey
+{
+    if (self.date) {
+        return [self.date sw_calendarKey];
+    }
+    return kSWCalendarBuilderDefaultKey;
+}
+
 - (id<SWCalendarModelProtocol>)modelOfIndex:(NSInteger)index
 {
     if (self.totalModels && index < self.totalModels.count) {
@@ -241,7 +252,7 @@
 
 - (NSInteger)numberOfCalendarVertical
 {
-    return [self totalModelCount] / SWCalendarDayTypeSaturday;
+    return [self totalModelCount] / SWCalendarDayTypeSaturday + 1;
 }
 
 - (NSInteger)numberOfCalendarHorizontal

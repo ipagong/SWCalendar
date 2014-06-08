@@ -8,8 +8,9 @@
 
 #import "SWCalendarViewController.h"
 #import "SWCalendarView.h"
+#import "SWCalendarSimpleFactory.h"
 
-@interface SWCalendarViewController ()
+@interface SWCalendarViewController () <SWCalendarViewDelegate>
 
 @property (nonatomic, strong) SWCalendarView *calendarView;
 
@@ -23,7 +24,9 @@
     if (self) {
         self.view = [self createBaseView];
         
-        self.calendarView = [[SWCalendarView alloc] initWithFrame:self.view.frame];
+        self.calendarView = [[SWCalendarView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                             CGRectGetWidth(self.view.frame),
+                                                                             CGRectGetHeight(self.view.frame))];
         self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         self.calendarView.autoresizesSubviews = YES;
         
@@ -44,11 +47,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (void)viewWillLayoutSubviews
-{
-    NSLog(@"1");
 }
 
 - (UIView *)createBaseView
@@ -102,5 +100,11 @@
     return v;
 }
 
+#pragma mark - SWCalendarViewDelegate methods
+
+- (id<SWCalendarFactoryProtocol>)calendarModelFacotryWithCalendarView:(SWCalendarView *)calendarView
+{
+    return [[SWCalendarSimpleFactory alloc] init];
+}
 
 @end

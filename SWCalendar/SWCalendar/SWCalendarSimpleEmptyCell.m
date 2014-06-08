@@ -30,7 +30,7 @@
     self.title = [[UILabel alloc] initWithFrame:CGRectZero];
     [self.title setNumberOfLines:1];
     [self.title setFont:[UIFont boldSystemFontOfSize:21]];
-    [self.title setTextColor:[UIColor grayColor]];
+    [self.title setTextColor:[UIColor lightGrayColor]];
     [self.title setTextAlignment:NSTextAlignmentCenter];
     [self.contentView addSubview:self.title];
     

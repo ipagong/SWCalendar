@@ -99,4 +99,9 @@
     return [self sw_setDateWithYear:year month:month day:day];
 }
 
+- (NSString *)sw_calendarKey
+{
+    return [NSString stringWithFormat:@"%d-%02d", [self sw_year], [self sw_month]];
+}
+
 @end

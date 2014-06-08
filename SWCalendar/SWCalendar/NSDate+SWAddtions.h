@@ -29,4 +29,7 @@
 - (NSDate *)sw_modifiedDateWithYear:(NSInteger)addYear
                               month:(NSInteger)addMonth
                                 day:(NSInteger)addDay;
+
+- (NSString *)sw_calendarKey;
+
 @end

@@ -20,6 +20,8 @@
 
 - (id<SWCalendarModelProtocol>)modelOfIndex:(NSInteger)index;
 
+- (NSString *)calendarKey;
+
 - (NSInteger)totalModelCount;
 - (NSInteger)numberOfCalendarVertical;
 - (NSInteger)numberOfCalendarHorizontal;

@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SWCalendarConstants.h"
+#import "SWCalendarFactoryProtocol.h"
+
+@class SWCalendarView;
+
+@protocol SWCalendarViewDelegate <NSObject>
+
+- (id <SWCalendarFactoryProtocol>)calendarModelFacotryWithCalendarView:(SWCalendarView *)calendarView;
+- (NSDate *)calendarDefaultDateWithCalendarView:(SWCalendarView *)calendarView;
+
+@end
 
 @interface SWCalendarView : UIView
 
@@ -18,5 +28,9 @@
 @property (nonatomic, strong) NSDate *defaultDate;
 
 @property (nonatomic, assign) SWCalendarViewScrollDirection direction;
+
+@property (nonatomic, weak) id <SWCalendarViewDelegate> delegate;
+
+- (void)reloadCalendar;
 
 @end
