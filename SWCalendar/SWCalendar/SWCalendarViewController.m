@@ -10,6 +10,8 @@
 #import "SWCalendarView.h"
 #import "SWCalendarSimpleFactory.h"
 
+#import "NSDate+SWAddtions.h"
+
 @interface SWCalendarViewController () <SWCalendarViewDelegate>
 
 @property (nonatomic, strong) SWCalendarView *calendarView;
@@ -26,15 +28,17 @@
         
         self.calendarView = [[SWCalendarView alloc] initWithFrame:CGRectMake(0, 0,
                                                                              CGRectGetWidth(self.view.frame),
-                                                                             CGRectGetHeight(self.view.frame))];
+                                                                             CGRectGetHeight(self.view.frame))
+                                                         delegate:self];
+        
         self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         self.calendarView.autoresizesSubviews = YES;
-        
+        self.calendarView.delegate = self;
         [self.calendarView setDirection:SWCalendarViewScrollDirectionVertical];
         
         [self.view addSubview:self.calendarView];
         
-        self.title = [NSString stringWithFormat:@"%@", [NSDate date]];
+//        self.title = [NSString stringWithFormat:@"%@", [NSDate date]];
     }
     return self;
 }
@@ -107,4 +111,11 @@
     return [[SWCalendarSimpleFactory alloc] init];
 }
 
+
+- (NSDate *)calendarDefaultDateWithCalendarView:(SWCalendarView *)calendarView
+{
+    NSDate *date = [[NSDate date] sw_setDateWithYear:1952 month:10 day:1];
+    
+    return date;
+}
 @end

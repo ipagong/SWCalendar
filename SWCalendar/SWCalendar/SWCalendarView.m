@@ -16,6 +16,7 @@
 
 #import "SWCalendarSimpleFactory.h"
 
+
 #define kSWCalendarObserverKeyCurrentYear       @"currentYear"
 #define kSWCalendarObserverKeyCurrentMonth      @"currentMonth"
 
@@ -34,21 +35,25 @@
 
 @property (nonatomic, strong) NSMutableDictionary *builders;
 
+@property (nonatomic, strong) UIPageControl *pageControl;
 
 @end
 
 @implementation SWCalendarView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame delegate:(id<SWCalendarViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.delegate = delegate;
         
         [self makeDefaultView];
         
         [self makeCalendar];
         
         [self registCalendarViewObserving];
+
     }
     return self;
 }
@@ -68,9 +73,14 @@
 {
 #pragma warning TODO : needs more flexible...for layout.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+
+    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 0;
+    layout.sectionInset = UIEdgeInsetsZero;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
+    [self.collectionView setPagingEnabled:YES];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -218,31 +228,29 @@
 }
 
 //if need changed, override this methods.
-#pragma mark – UICollectionViewDelegateFlowLayout 
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), 0);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    SWCalendarBuilder *builder = [self builderWithSection:section];
+    
+    CGFloat fitHeight = 50 * [builder numberOfCalendarVertical];
+    
+    return CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - fitHeight);
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SWCalendarBuilder *builder = [self builderWithSection:indexPath.section];
     
-    CGFloat cellWidth  = ((int)(CGRectGetWidth(self.collectionView.bounds)/[builder numberOfCalendarHorizontal])) - 1;
-    CGFloat cellHeight = ((int)(CGRectGetHeight(self.collectionView.bounds)/[builder numberOfCalendarVertical]));
+    CGFloat cellWidth = CGRectGetWidth(self.bounds)/[builder numberOfCalendarHorizontal];
     
-    return CGSizeMake(cellWidth, cellHeight);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsZero;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
+    return CGSizeMake(cellWidth, 50);
 }
 
 #pragma mark - collectionViewDataSource methods
@@ -255,7 +263,7 @@
     
     NSDate *defaultDate = nil;
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarDefaultDateWithCalendarView:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarDefaultDateWithCalendarView:)] == YES) {
         defaultDate = [self.delegate calendarDefaultDateWithCalendarView:self];
     }
     
@@ -345,11 +353,9 @@
     
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset
+- (UIPageControl *)pageControl
 {
-    
+    return nil;
 }
 
 @end

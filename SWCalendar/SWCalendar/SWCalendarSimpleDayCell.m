@@ -11,6 +11,7 @@
 @interface SWCalendarSimpleDayCell ()
 
 @property (nonatomic, strong) UILabel *title;
+@property (nonatomic, strong) UIView *bgView;
 
 @end
 
@@ -20,6 +21,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self makeBackgroundView];
         [self makeDefaultView];
     }
     return self;
@@ -34,9 +36,23 @@
     [self.contentView addSubview:self.title];
 }
 
+- (void)makeBackgroundView
+{
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0.5, 0.5,
+                                                            CGRectGetWidth(self.bounds) - 1,
+                                                            CGRectGetHeight(self.bounds) - 1)];
+    [self.bgView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    [self.contentView addSubview:self.bgView];
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    [self.bgView setFrame:CGRectMake(0.5, 0.5,
+                                    CGRectGetWidth(self.bounds) - 1,
+                                    CGRectGetHeight(self.bounds) - 1)];
+    
     [self.title setFrame:CGRectMake(0, CGRectGetHeight(self.frame)/2 - 13,
                                     CGRectGetWidth(self.frame) , 26)];
 }
