@@ -22,9 +22,9 @@
     
     SWCalendarViewController *calendarViewController = [[SWCalendarViewController alloc] init];
     
-    UINavigationController *naviViewController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
+//    UINavigationController *naviViewController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
     
-    self.window.rootViewController = naviViewController;
+    self.window.rootViewController = calendarViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

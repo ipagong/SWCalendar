@@ -252,7 +252,7 @@
 
 - (NSInteger)numberOfCalendarVertical
 {
-    return [self totalModelCount] / SWCalendarDayTypeSaturday + 1;
+    return [self totalModelCount] / SWCalendarDayTypeSaturday;
 }
 
 - (NSInteger)numberOfCalendarHorizontal
