@@ -90,6 +90,9 @@
 
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
+    
+    [self.collectionView setScrollsToTop:NO];
+    
     [self addSubview:self.collectionView];
     
 }
