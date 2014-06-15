@@ -10,6 +10,8 @@
 #import "SWCalendarView.h"
 #import "SWCalendarSimpleFactory.h"
 
+
+
 #import "NSDate+SWAddtions.h"
 
 @interface SWCalendarViewController () <SWCalendarViewDelegate>
@@ -67,6 +69,6 @@
 
 - (void)calendarView:(SWCalendarView *)calendarView changedCurrentDate:(NSDate *)date
 {
-    self.title = [NSString stringWithFormat:@"%d.%02d", [date sw_year], [date sw_month]];
+    self.title = [NSString stringWithFormat:@"%ld.%02ld", [date sw_year], [date sw_month]];
 }
 @end

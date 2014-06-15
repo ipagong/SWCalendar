@@ -10,4 +10,8 @@
 
 @interface SWCalendarView (Obsesrve)
 @property (nonatomic, assign) BOOL isObserving;
+
+- (void)registCalendarViewObserving;
+- (void)removeCalendarViewObserving;
+
 @end

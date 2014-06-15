@@ -8,7 +8,7 @@
 
 #import "SWCalendarView.h"
 #import "SWCalendarView+Paging.h"
-#import "SWCalendarView+Obsesrve.m"
+#import "SWCalendarView+Obsesrve.h"
 
 #import "NSDate+SWAddtions.h"
 
@@ -73,7 +73,7 @@
 {
 #pragma warning TODO : needs more flexible...for layout.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
+
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
     [self.collectionView setPagingEnabled:YES];
