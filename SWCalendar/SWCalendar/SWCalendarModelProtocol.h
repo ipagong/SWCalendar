@@ -19,7 +19,7 @@
 
 - (BOOL)enable;
 
-@property (nonatomic, assign) SWCalendarDayType dayType;
+@property (nonatomic, assign) NSInteger dayType;
 
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, assign) NSInteger month;

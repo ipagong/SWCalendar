@@ -19,14 +19,10 @@ typedef struct {
     
 } SWCalendarSize;
 
-@interface SWCalendarView () <UIScrollViewDelegate>
-
-@property (nonatomic, assign) NSInteger currentYear;
-@property (nonatomic, assign) NSInteger currentMonth;
-
-@end
 
 @implementation SWCalendarView (Paging)
+
+@dynamic currentMonth, currentYear;
 
 #pragma mark - scrollView delegate methods
 static NSInteger previousPage = 0;

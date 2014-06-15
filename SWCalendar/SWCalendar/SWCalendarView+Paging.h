@@ -8,8 +8,11 @@
 
 #import "SWCalendarView.h"
 
-@interface SWCalendarView (Paging)
+@interface SWCalendarView (Paging) <UIScrollViewDelegate>
 
 - (void)moveToCenterMonthWithScrollView:(UIScrollView *)scrollView;
+
+@property (nonatomic, assign) NSInteger currentYear;
+@property (nonatomic, assign) NSInteger currentMonth;
 
 @end

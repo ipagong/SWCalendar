@@ -181,7 +181,7 @@
 {
     NSInteger lastDay = [self lastDay];
     
-    for (int currentDay = lastDay; currentDay > 0; currentDay--) {
+    for (int currentDay = (int)lastDay; currentDay > 0; currentDay--) {
         
         NSDate *date = [self.date sw_setDateWithYear:self.year
                                                month:self.month
