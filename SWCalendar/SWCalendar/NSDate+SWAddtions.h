@@ -10,9 +10,14 @@
 
 @interface NSDate (SWAddtions)
 
++ (NSDate *)sw_dateWithYear:(NSInteger)year
+                      month:(NSInteger)month
+                        day:(NSInteger)day;
+
 - (NSDate *)sw_setDateWithYear:(NSInteger)year
                          month:(NSInteger)month
                            day:(NSInteger)day;
+
 
 - (NSInteger)sw_day;
 - (NSInteger)sw_month;

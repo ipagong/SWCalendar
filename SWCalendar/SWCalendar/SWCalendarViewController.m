@@ -24,13 +24,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.calendarView = [[SWCalendarView alloc] initWithFrame:CGRectMake(0, 30,
-                                                                             CGRectGetWidth(self.view.frame),
-                                                                             450)
+        
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.edgesForExtendedLayout = NO;
+        
+        self.calendarView = [[SWCalendarView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                             CGRectGetWidth(self.view.bounds),
+                                                                             CGRectGetHeight(self.view.bounds))
                                                          delegate:self];
         
-        self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        self.calendarView.autoresizesSubviews = YES;
         self.calendarView.delegate = self;
         [self.calendarView setDirection:SWCalendarViewScrollDirectionVertical];
         
@@ -60,8 +62,11 @@
 
 - (NSDate *)calendarDefaultDateWithCalendarView:(SWCalendarView *)calendarView
 {
-    NSDate *date = [[NSDate date] sw_setDateWithYear:1952 month:10 day:1];
-    
-    return date;
+    return [NSDate date];
+}
+
+- (void)calendarView:(SWCalendarView *)calendarView changedCurrentDate:(NSDate *)date
+{
+    self.title = [NSString stringWithFormat:@"%d.%02d", [date sw_year], [date sw_month]];
 }
 @end

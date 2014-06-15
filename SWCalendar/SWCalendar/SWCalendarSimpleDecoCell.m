@@ -48,14 +48,14 @@
     [self.backgroundView setBackgroundColor:[UIColor purpleColor]];
 }
 
--(void)layoutSubviews
+- (void)layoutSubviews
 {
     [super layoutSubviews];
     
     [self.title setFrame:CGRectMake(0, CGRectGetHeight(self.frame)/2 - 13,
                                     CGRectGetWidth(self.frame) , 26)];
     
-    [self.subTitle setFrame:CGRectMake(0, CGRectGetHeight(self.frame) - 18,
+    [self.subTitle setFrame:CGRectMake(0, CGRectGetHeight(self.frame) - 16,
                                        CGRectGetWidth(self.frame) , 14)];
 }
 

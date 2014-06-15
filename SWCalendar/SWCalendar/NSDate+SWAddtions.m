@@ -21,6 +21,24 @@
                        fromDate:self];
 }
 
++ (NSDate *)sw_dateWithYear:(NSInteger)year
+                      month:(NSInteger)month
+                        day:(NSInteger)day
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSCalendarUnit calendarUnit =
+    NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitWeekOfMonth|NSCalendarUnitWeekday;
+    
+    NSDateComponents *components = [calendar components:calendarUnit fromDate:[NSDate date]];
+    
+    [components setYear:year];
+    [components setMonth:month];
+    [components setDay:day];
+    
+    return [calendar dateFromComponents:components];
+}
+
 - (NSDate *)sw_setDateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
 {
     NSDateComponents *components = [self sw_defaultComponents];

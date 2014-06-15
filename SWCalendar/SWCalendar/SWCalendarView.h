@@ -16,16 +16,15 @@
 
 - (id <SWCalendarFactoryProtocol>)calendarModelFacotryWithCalendarView:(SWCalendarView *)calendarView;
 - (NSDate *)calendarDefaultDateWithCalendarView:(SWCalendarView *)calendarView;
+- (void)calendarView:(SWCalendarView *)calendarView changedCurrentDate:(NSDate *)date;
 
 @end
 
 @interface SWCalendarView : UIView
 
-@property (nonatomic, assign) CGRect collectionFrame;
-
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSDate *defaultDate;
+@property (nonatomic, strong) NSDate *date;
 
 @property (nonatomic, assign) SWCalendarViewScrollDirection direction;
 

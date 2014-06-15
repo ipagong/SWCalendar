@@ -7,6 +7,7 @@
 //
 
 #import "SWCalendarView.h"
+#import "SWCalendarView+Paging.h"
 
 #import "NSDate+SWAddtions.h"
 
@@ -22,10 +23,13 @@
 
 #define kSWCalendarObserverKeyDirection         @"direction"
 
+#define kSWCalendarObserverKeyContentSize       @"contentSize"
+
 @interface SWCalendarView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, assign) NSInteger currentYear;
 @property (nonatomic, assign) NSInteger currentMonth;
+@property (nonatomic, assign) CGRect collectionFrame;
 
 @property (nonatomic, assign) BOOL isObserving;
 @property (nonatomic, assign) NSInteger numberOfBuilder;
@@ -46,6 +50,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.collectionFrame = frame;
+        
         self.delegate = delegate;
         
         [self makeDefaultView];
@@ -63,7 +69,7 @@
     [self removeCalendarViewObserving];
     
     self.collectionView = nil;
-    self.defaultDate    = nil;
+    self.date    = nil;
     
     self.builder = nil;
     self.factory = nil;
@@ -73,18 +79,15 @@
 {
 #pragma warning TODO : needs more flexible...for layout.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-
-    layout.minimumLineSpacing = 0;
-    layout.minimumInteritemSpacing = 0;
-    layout.sectionInset = UIEdgeInsetsZero;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
     [self.collectionView setPagingEnabled:YES];
-    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [self.collectionView setAutoresizesSubviews:NO];
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     [self addSubview:self.collectionView];
@@ -100,12 +103,16 @@
     if (CGRectIsEmpty(self.collectionFrame) == YES) {
         
         collectionViewFrame = CGRectMake(0, 0,
-                                         CGRectGetWidth(self.frame),
-                                         CGRectGetHeight(self.frame));
+                                         CGRectGetWidth(self.bounds),
+                                         CGRectGetHeight(self.bounds));
         
     } else {
         
-        collectionViewFrame = self.collectionFrame;
+        collectionViewFrame = CGRectMake(CGRectGetMinX(self.collectionFrame),
+                                         CGRectGetMinY(self.collectionFrame),
+                                         CGRectGetWidth(self.bounds),
+                                         CGRectGetHeight(self.bounds));
+    
         
     }
     
@@ -129,8 +136,11 @@
             break;
     }
     
+    
     [self.collectionView setFrame:collectionViewFrame];
     [self.collectionView reloadData];
+    
+    NSLog(@"%@ %@", NSStringFromCGRect(self.collectionView.frame), NSStringFromCGRect(self.collectionView.bounds));
 }
 
 #pragma mark - observing methods
@@ -153,6 +163,11 @@
                   options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                   context:nil];
         
+        [self.collectionView addObserver:self
+                              forKeyPath:kSWCalendarObserverKeyContentSize
+                                 options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                                 context:nil];
+        
         self.isObserving = YES;
     }
 }
@@ -170,6 +185,9 @@
         [self removeObserver:self
                   forKeyPath:kSWCalendarObserverKeyDirection];
         
+        [self.collectionView removeObserver:self
+                                 forKeyPath:kSWCalendarObserverKeyContentSize];
+        
         self.isObserving = NO;
     }
 }
@@ -183,6 +201,19 @@
         return;
     }
     
+    if ([object isEqual:self] == YES) {
+        [self changedCalendarViewValueForKeyPath:keyPath change:change context:context];
+    }
+
+    if ([object isEqual:self.collectionView] == YES) {
+        [self changedCollectionViewValueForKeyPath:keyPath change:change context:context];
+    }
+    
+    
+}
+
+- (void)changedCalendarViewValueForKeyPath:(NSString *)keyPath change:(NSDictionary *)change context:(void *)context
+{
     NSInteger newValue = -1;
     NSInteger oldValue = -1;
     
@@ -206,6 +237,16 @@
     
     if ([keyPath isEqualToString:kSWCalendarObserverKeyDirection] == YES) {
         [self obsesrverDirectionWithNew:newValue old:oldValue];
+    }
+}
+
+- (void)changedCollectionViewValueForKeyPath:(NSString *)keyPath change:(NSDictionary *)change context:(void *)context
+{
+    NSValue *newSize = [change valueForKey:NSKeyValueChangeNewKey];
+    NSValue *oldSize = [change valueForKey:NSKeyValueChangeOldKey];
+    
+    if (CGSizeEqualToSize(newSize.CGSizeValue, oldSize.CGSizeValue) == NO) {
+        [self moveToCenterMonthWithScrollView:self.collectionView];
     }
 }
 
@@ -240,17 +281,40 @@
     SWCalendarBuilder *builder = [self builderWithSection:section];
     
     CGFloat fitHeight = 50 * [builder numberOfCalendarVertical];
+    CGFloat viewHeight = CGRectGetHeight(self.bounds);
     
-    return CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - fitHeight);
+    CGFloat footHeight = 0;
+    
+    if (fitHeight > viewHeight) {
+        footHeight = viewHeight - (fitHeight - viewHeight);
+    } else {
+        footHeight = viewHeight - fitHeight;
+    }
+    
+    return CGSizeMake(CGRectGetWidth(self.bounds), footHeight);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SWCalendarBuilder *builder = [self builderWithSection:indexPath.section];
     
-    CGFloat cellWidth = CGRectGetWidth(self.bounds)/[builder numberOfCalendarHorizontal];
+    CGFloat cellWidth = CGRectGetWidth(self.bounds)/[builder numberOfCalendarHorizontal] - 0.5;
     
     return CGSizeMake(cellWidth, 50);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsZero;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
 }
 
 #pragma mark - collectionViewDataSource methods
@@ -261,24 +325,28 @@
         self.factory = [self.delegate calendarModelFacotryWithCalendarView:self];
     }
     
-    NSDate *defaultDate = nil;
-    
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarDefaultDateWithCalendarView:)] == YES) {
-        defaultDate = [self.delegate calendarDefaultDateWithCalendarView:self];
+        self.date = [self.delegate calendarDefaultDateWithCalendarView:self];
     }
     
     if (self.factory == nil || [self.factory conformsToProtocol:@protocol(SWCalendarFactoryProtocol)] == NO) {
         self.factory = [[SWCalendarSimpleFactory alloc] init];
         
-        defaultDate = [NSDate date];
+        self.date = [NSDate date];
     }
     
-    self.currentYear  = [defaultDate sw_year];
-    self.currentMonth = [defaultDate sw_month];
+    self.currentYear  = [self.date sw_year];
+    self.currentMonth = [self.date sw_month];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:changedCurrentDate:)] == YES) {
+        [self.delegate calendarView:self changedCurrentDate:self.date];
+    }
     
     self.builders = [NSMutableDictionary dictionaryWithCapacity:kSWCalendarBuilderDefaultCacheCount];
 
     [self loadCalendars];
+    
+    [self moveToCenterMonthWithScrollView:self.collectionView];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -352,10 +420,4 @@
     }
     
 }
-
-- (UIPageControl *)pageControl
-{
-    return nil;
-}
-
 @end

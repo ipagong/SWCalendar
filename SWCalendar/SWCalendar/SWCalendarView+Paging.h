@@ -10,6 +10,6 @@
 
 @interface SWCalendarView (Paging)
 
-- (void)calendarScrollViewWillBeginDecelrating:(UIScrollView *)scrollView;
+- (void)moveToCenterMonthWithScrollView:(UIScrollView *)scrollView;
 
 @end
