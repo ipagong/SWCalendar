@@ -8,24 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "SWCalendarFactoryProtocol.h"
+#import "SWCalendarBuilderProtocol.h"
+#import "SWCalendarModelProtocol.h"
 
-
-
-@interface SWCalendarBuilder : NSObject
-
-- (instancetype)initWithModelFactory:(id<SWCalendarFactoryProtocol>)factory;
-
-- (void)setDate:(NSDate *)date;
-- (void)reloadModels;
-
-- (id<SWCalendarModelProtocol>)modelOfIndex:(NSInteger)index;
-
-- (NSString *)calendarKey;
-
-- (NSInteger)totalModelCount;
-- (NSInteger)numberOfCalendarVertical;
-- (NSInteger)numberOfCalendarHorizontal;
+@interface SWCalendarBuilder : NSObject <SWCalendarBuilderProtocol>
 
 @property (nonatomic, strong, readonly) NSMutableArray *totalModels;
 
+- (id<SWCalendarModelProtocol>)modelWithDay:(SWCalendarDayType)dayType
+                                       week:(NSInteger)week;
+- (id<SWCalendarModelProtocol>)modelExceptDecoWithDay:(SWCalendarDayType)dayType
+                                                 week:(NSInteger)week;
+- (NSInteger)lastDay;
+- (NSInteger)numberOfCalendarHorizontal;
+- (NSInteger)numberOfCalendarVertical;
+- (NSInteger)totalModelCount;
 @end

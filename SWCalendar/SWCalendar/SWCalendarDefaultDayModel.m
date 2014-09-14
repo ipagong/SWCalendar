@@ -29,7 +29,7 @@
         
     }
     
-    return [NSString stringWithFormat:@"%02d", self.day];
+    return [NSString stringWithFormat:@"%d", (int)self.day];
 }
 
 - (NSString *)subTitle

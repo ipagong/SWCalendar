@@ -30,7 +30,9 @@
 
 @property (nonatomic, weak) id <SWCalendarViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<SWCalendarViewDelegate>)delegate;
+- (id)initWithFrame:(CGRect)frame
+           delegate:(id<SWCalendarViewDelegate>)delegate
+          direction:(SWCalendarViewScrollDirection)direction;
 
 - (void)reloadCalendar;
 

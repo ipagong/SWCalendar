@@ -119,7 +119,7 @@
 
 - (NSString *)sw_calendarKey
 {
-    return [NSString stringWithFormat:@"%d-%02d", [self sw_year], [self sw_month]];
+    return [NSString stringWithFormat:@"%d-%02d", (int)[self sw_year], (int)[self sw_month]];
 }
 
 @end

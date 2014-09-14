@@ -9,12 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SWCalendarModelProtocol.h"
 
-typedef enum {
-    SWCalendarModelTypeDeco = 0,
-    SWCalendarModelTypeFront,
-    SWCalendarModelTypeMain,
-    SWCalendarModelTypeRear
-} SWCalendarModelType;
+
 
 @protocol SWCalendarFactoryProtocol <NSObject>
 

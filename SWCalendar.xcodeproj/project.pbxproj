@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187CE0DF19C2F9D50037023C /* SWBuilderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CE0DE19C2F9D50037023C /* SWBuilderHelper.m */; };
 		BB0EF2A91942E73B00D65BD1 /* SWCalendarSimpleDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EF2A81942E73B00D65BD1 /* SWCalendarSimpleDayCell.m */; };
 		BB0EF2AC1942E75D00D65BD1 /* SWCalendarSimpleEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EF2AB1942E75D00D65BD1 /* SWCalendarSimpleEmptyCell.m */; };
 		BB0EF2AF1942E76A00D65BD1 /* SWCalendarSimpleDecoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EF2AE1942E76A00D65BD1 /* SWCalendarSimpleDecoCell.m */; };
@@ -50,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187CE0DC19C2F6DB0037023C /* SWCalendarBuilderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWCalendarBuilderProtocol.h; sourceTree = "<group>"; };
+		187CE0DD19C2F9D50037023C /* SWBuilderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBuilderHelper.h; sourceTree = "<group>"; };
+		187CE0DE19C2F9D50037023C /* SWBuilderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBuilderHelper.m; sourceTree = "<group>"; };
 		BB0EF2A71942E73B00D65BD1 /* SWCalendarSimpleDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarSimpleDayCell.h; sourceTree = "<group>"; };
 		BB0EF2A81942E73B00D65BD1 /* SWCalendarSimpleDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCalendarSimpleDayCell.m; sourceTree = "<group>"; };
 		BB0EF2AA1942E75D00D65BD1 /* SWCalendarSimpleEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCalendarSimpleEmptyCell.h; sourceTree = "<group>"; };
@@ -224,8 +228,11 @@
 				BB0EF2AB1942E75D00D65BD1 /* SWCalendarSimpleEmptyCell.m */,
 				BB0EF2AD1942E76A00D65BD1 /* SWCalendarSimpleDecoCell.h */,
 				BB0EF2AE1942E76A00D65BD1 /* SWCalendarSimpleDecoCell.m */,
+				187CE0DC19C2F6DB0037023C /* SWCalendarBuilderProtocol.h */,
 				BBDB87C7193C75DA0074C9D1 /* SWCalendarBuilder.h */,
 				BBDB87C8193C75DA0074C9D1 /* SWCalendarBuilder.m */,
+				187CE0DD19C2F9D50037023C /* SWBuilderHelper.h */,
+				187CE0DE19C2F9D50037023C /* SWBuilderHelper.m */,
 				BBDB87CE193CD4700074C9D1 /* SWCalendarFactoryProtocol.h */,
 				BBDB87CB193CD4560074C9D1 /* SWCalendarSimpleFactory.h */,
 				BBDB87CC193CD4560074C9D1 /* SWCalendarSimpleFactory.m */,
@@ -343,6 +350,7 @@
 				BB3D6750194AFFBE00EBA4F3 /* SWCalendarView+Paging.m in Sources */,
 				BBDB87C9193C75DA0074C9D1 /* SWCalendarBuilder.m in Sources */,
 				BB2A4F811935C170004399DD /* NSDate+SWAddtions.m in Sources */,
+				187CE0DF19C2F9D50037023C /* SWBuilderHelper.m in Sources */,
 				BB2A4F5C1935A913004399DD /* SWAppDelegate.m in Sources */,
 				BB65EB95194DC60B006E560C /* SWCalendarView+Obsesrve.m in Sources */,
 				BB2A4F581935A913004399DD /* main.m in Sources */,

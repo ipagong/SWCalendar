@@ -31,7 +31,7 @@
 {
     self.title = [[UILabel alloc] initWithFrame:CGRectZero];
     [self.title setNumberOfLines:1];
-    [self.title setFont:[UIFont boldSystemFontOfSize:21]];
+    [self.title setFont:[UIFont systemFontOfSize:15]];
     [self.title setTextAlignment:NSTextAlignmentCenter];
     [self.contentView addSubview:self.title];
 }
@@ -41,7 +41,7 @@
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0.5, 0.5,
                                                             CGRectGetWidth(self.bounds) - 1,
                                                             CGRectGetHeight(self.bounds) - 1)];
-    [self.bgView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.bgView setBackgroundColor:[UIColor clearColor]];
     
     [self.contentView addSubview:self.bgView];
 }
@@ -71,13 +71,8 @@
 - (void)changeTitleColor
 {
     switch ([self.model dayType]) {
-        case SWCalendarDayTypeSunday:
-        case SWCalendarDayTypeSaturday:
-            [self.title setTextColor:[UIColor redColor]];
-            break;
-            
         default:
-            [self.title setTextColor:[UIColor purpleColor]];
+            [self.title setTextColor:[UIColor blackColor]];
             break;
     }
 }

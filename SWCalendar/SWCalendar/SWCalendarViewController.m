@@ -33,10 +33,8 @@
         self.calendarView = [[SWCalendarView alloc] initWithFrame:CGRectMake(0, 0,
                                                                              CGRectGetWidth(self.view.bounds),
                                                                              CGRectGetHeight(self.view.bounds))
-                                                         delegate:self];
-        
-        self.calendarView.delegate = self;
-        [self.calendarView setDirection:SWCalendarViewScrollDirectionVertical];
+                                                         delegate:self
+                                                        direction:SWCalendarViewScrollDirectionVertical];
         
         [self.view addSubview:self.calendarView];
         
@@ -61,7 +59,6 @@
     return [[SWCalendarSimpleFactory alloc] init];
 }
 
-
 - (NSDate *)calendarDefaultDateWithCalendarView:(SWCalendarView *)calendarView
 {
     return [NSDate date];
@@ -69,6 +66,6 @@
 
 - (void)calendarView:(SWCalendarView *)calendarView changedCurrentDate:(NSDate *)date
 {
-    self.title = [NSString stringWithFormat:@"%ld.%02ld", [date sw_year], [date sw_month]];
+    self.title = [NSString stringWithFormat:@"%d.%02d", (int)[date sw_year], (int)[date sw_month]];
 }
 @end

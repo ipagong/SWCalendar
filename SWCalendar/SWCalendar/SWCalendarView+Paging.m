@@ -73,13 +73,37 @@ static NSInteger previousPage = 0;
 - (void)moveToCenterMonthWithScrollView:(UIScrollView *)scrollView
 {
     if (CGRectIsEmpty(scrollView.frame) == YES) return;
+ 
+    CGPoint point = CGPointZero;
     
-    CGFloat realPage = scrollView.contentSize.height/CGRectGetHeight(scrollView.bounds);
-    
-    NSInteger centerCount = realPage/2;
-    CGFloat contentOffset = CGRectGetHeight(scrollView.bounds) * centerCount;
-    
-    [scrollView setContentOffset:CGPointMake(0, contentOffset)];
+    switch (self.direction) {
+        case SWCalendarViewScrollDirectionHorizontal:
+        {
+            CGFloat realPage = scrollView.contentSize.width/CGRectGetWidth(scrollView.bounds);
+            
+            NSInteger centerCount = realPage/2;
+            CGFloat contentOffset = CGRectGetWidth(scrollView.bounds) * centerCount;
+            
+            point = CGPointMake(contentOffset, 0);
+        }
+            break;
+            
+        case SWCalendarViewScrollDirectionVertical:
+        {
+            CGFloat realPage = scrollView.contentSize.height/CGRectGetHeight(scrollView.bounds);
+            
+            NSInteger centerCount = realPage/2;
+            CGFloat contentOffset = CGRectGetHeight(scrollView.bounds) * centerCount;
+            
+            point = CGPointMake(0, contentOffset);
+        }
+            break;
+            
+        default:
+            break;
+    }
+
+    [scrollView setContentOffset:point];
 }
 
 

@@ -13,6 +13,8 @@
 #import "NSDate+SWAddtions.h"
 
 #import "SWCalendarBuilder.h"
+#import "SWBuilderHelper.h"
+
 #import "SWCalendarModelProtocol.h"
 #import "SWCalendarViewCellProtocol.h"
 
@@ -39,11 +41,13 @@
 
 @implementation SWCalendarView
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<SWCalendarViewDelegate>)delegate
+- (id)initWithFrame:(CGRect)frame
+           delegate:(id<SWCalendarViewDelegate>)delegate
+          direction:(SWCalendarViewScrollDirection)direction
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        self.direction = direction;
         self.collectionFrame = frame;
         
         self.delegate = delegate;
@@ -71,9 +75,11 @@
 
 - (void)makeDefaultView
 {
-#pragma warning TODO : needs more flexible...for layout.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-
+    [layout setScrollDirection:(self.direction == SWCalendarViewScrollDirectionHorizontal ?
+                                UICollectionViewScrollDirectionHorizontal :
+                                UICollectionViewScrollDirectionVertical)];
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
     [self.collectionView setPagingEnabled:YES];
@@ -145,39 +151,28 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), 0);
+    return CGSizeZero;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    SWCalendarBuilder *builder = [self builderWithSection:section];
-    
-    CGFloat fitHeight = 50 * [builder numberOfCalendarVertical];
-    CGFloat viewHeight = CGRectGetHeight(self.bounds);
-    
-    CGFloat footHeight = 0;
-    
-    if (fitHeight > viewHeight) {
-        footHeight = viewHeight - (fitHeight - viewHeight);
-    } else {
-        footHeight = viewHeight - fitHeight;
-    }
-    
-    return CGSizeMake(CGRectGetWidth(self.bounds), footHeight);
+    return CGSizeZero;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SWCalendarBuilder *builder = [self builderWithSection:indexPath.section];
     
-    CGFloat cellWidth = CGRectGetWidth(self.bounds)/[builder numberOfCalendarHorizontal] - 0.5;
+    CGFloat cellWidth = CGRectGetWidth(self.bounds)/[builder numberOfCalendarHorizontal];
     
     return CGSizeMake(cellWidth, 50);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsZero;
+    SWCalendarBuilder *builder = [self builderWithSection:section];
+    
+    return UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.collectionView.bounds) - builder.numberOfCalendarVertical * 50, 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -237,7 +232,9 @@
 {
     SWCalendarBuilder *builder = [self builderWithSection:indexPath.section];
     
-    id <SWCalendarModelProtocol> model = [builder modelOfIndex:indexPath.row];
+    id <SWCalendarModelProtocol> model = [SWBuilderHelper modelWithIndex:indexPath.row
+                                                                 builder:builder
+                                                              isVertical:(self.direction == SWCalendarViewScrollDirectionVertical ? YES:NO)];
     
     [self.collectionView registerClass:[model cellClazz]
             forCellWithReuseIdentifier:[model cellKey]];
@@ -246,7 +243,7 @@
                                                                                                              forIndexPath:indexPath];
     
     [cell refreshCellWithModel:model];
-    
+
     return cell;
 }
 
@@ -277,7 +274,9 @@
 
 - (void)loadCalendars
 {
-    NSDate *date = [[NSDate date] sw_setDateWithYear:self.currentYear month:(self.currentMonth - [self monthGap]) day:1];
+    NSDate *date = [[NSDate date] sw_setDateWithYear:self.currentYear
+                                               month:(self.currentMonth - [self monthGap])
+                                                 day:1];
 
     SWCalendarBuilder *builder = nil;
     
@@ -289,6 +288,7 @@
         [self.builders setObject:builder forKey:[builder calendarKey]];
         
         date = [date sw_modifiedDateWithYear:0 month:1 day:0];
+        
     }
     
 }

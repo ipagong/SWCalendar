@@ -25,29 +25,29 @@
 {
     switch (self.dayType) {
         case SWCalendarDayTypeSunday:
-            return @"SUN";
+            return @"일";
             break;
         case SWCalendarDayTypeMonday:
-            return @"MON";
+            return @"월";
             break;
         case SWCalendarDayTypeTuseday:
-            return @"TUE";
+            return @"화";
             break;
 
         case SWCalendarDayTypeWednesday:
-            return @"WED";
+            return @"수";
             break;
 
         case SWCalendarDayTypeThursday:
-            return @"THU";
+            return @"목";
             break;
 
         case SWCalendarDayTypeFriday:
-            return @"FRI";
+            return @"금";
             break;
 
         case SWCalendarDayTypeSaturday:
-            return @"SAT";
+            return @"토";
             break;
         default:
             
@@ -59,36 +59,36 @@
 
 - (NSString *)subTitle
 {
-    switch (self.dayType) {
-        case SWCalendarDayTypeSunday:
-            return @"SUNDAY";
-            break;
-        case SWCalendarDayTypeMonday:
-            return @"MONDAY";
-            break;
-        case SWCalendarDayTypeTuseday:
-            return @"TUSEDAY";
-            break;
-            
-        case SWCalendarDayTypeWednesday:
-            return @"WEDNESDAY";
-            break;
-            
-        case SWCalendarDayTypeThursday:
-            return @"THURSDAY";
-            break;
-            
-        case SWCalendarDayTypeFriday:
-            return @"FRIDAY";
-            break;
-            
-        case SWCalendarDayTypeSaturday:
-            return @"SATURDAY";
-            break;
-        default:
-            break;
-    }
-    
+//    switch (self.dayType) {
+//        case SWCalendarDayTypeSunday:
+//            return @"SUNDAY";
+//            break;
+//        case SWCalendarDayTypeMonday:
+//            return @"MONDAY";
+//            break;
+//        case SWCalendarDayTypeTuseday:
+//            return @"TUSEDAY";
+//            break;
+//            
+//        case SWCalendarDayTypeWednesday:
+//            return @"WEDNESDAY";
+//            break;
+//            
+//        case SWCalendarDayTypeThursday:
+//            return @"THURSDAY";
+//            break;
+//            
+//        case SWCalendarDayTypeFriday:
+//            return @"FRIDAY";
+//            break;
+//            
+//        case SWCalendarDayTypeSaturday:
+//            return @"SATURDAY";
+//            break;
+//        default:
+//            break;
+//    }
+//    
     return kSWCalendarEmptyString;
 }
 

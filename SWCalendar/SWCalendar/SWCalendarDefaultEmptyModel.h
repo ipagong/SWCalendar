@@ -8,6 +8,6 @@
 
 #import "SWCalendarDefaultDayModel.h"
 
-@interface SWCalendarDefaultEmptyModel : SWCalendarDefaultDayModel
+@interface SWCalendarDefaultEmptyModel : SWCalendarSimpleDayModel
 
 @end

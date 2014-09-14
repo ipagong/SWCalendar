@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SWCalendarConstants.h"
 
+typedef enum {
+    SWCalendarModelTypeDeco = 0,
+    SWCalendarModelTypeFront,
+    SWCalendarModelTypeMain,
+    SWCalendarModelTypeRear
+} SWCalendarModelType;
+
 @protocol SWCalendarModelProtocol <NSObject>
 
 - (NSString *)cellKey;
@@ -26,6 +33,8 @@
 @property (nonatomic, assign) NSInteger day;
 
 @property (nonatomic, assign) BOOL isOtherMonth;
+
+@property (nonatomic, assign) SWCalendarModelType type;
 
 
 @end

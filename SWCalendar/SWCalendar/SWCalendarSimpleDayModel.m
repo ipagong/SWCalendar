@@ -47,4 +47,9 @@
     return YES;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%d-%d-%d [%@ type:%d]", (int)self.year, (int)self.month, (int)self.day, NSStringFromClass(self.class), (int)self.type];
+}
+
 @end

@@ -41,6 +41,8 @@
             break;
     }
     
+    [model setType:modelType];
+    
     return model;
 }
 

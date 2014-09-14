@@ -265,4 +265,26 @@
     return [self.date sw_dateCount];
 }
 
+- (id<SWCalendarModelProtocol>)modelWithDay:(SWCalendarDayType)dayType
+                                       week:(NSInteger)week
+{
+    NSInteger index = dayType + (week * (SWCalendarDayTypeSaturday));
+    
+    if (index < 0) index = 0;
+    if (self.totalModels == nil || index > self.totalModels.count) return nil;
+    
+    return [self.totalModels objectAtIndex:index];
+}
+
+- (id<SWCalendarModelProtocol>)modelExceptDecoWithDay:(SWCalendarDayType)dayType
+                                                 week:(NSInteger)week
+{
+    NSInteger index = dayType + (week * (SWCalendarDayTypeSaturday)) - self.decoModels.count;
+
+    
+    if (self.totalModels == nil || index > self.totalModels.count) return nil;
+    
+    return [self.totalModels objectAtIndex:index];
+}
+
 @end

@@ -23,5 +23,6 @@
 @property (nonatomic, strong, readonly) NSString *subTitle;
 
 @property (nonatomic, assign) BOOL isOtherMonth;
+@property (nonatomic, assign) SWCalendarModelType type;
 
 @end
